@@ -23,12 +23,12 @@ export const queries = {
             users(id: $id) {
                 ...user
                 group{
-                id
-                name
+                    id
+                    name
                 }
                 roles{
-                id
-                roleName
+                    id
+                    roleName
                 }
             }
         }
@@ -38,7 +38,12 @@ export const queries = {
         query loginQuery($id: ID!) {
             users(id: $id) {
                 id
+                firstName
                 password
+                 roles{
+                    id
+                    roleName
+                }
             }
         }
     `,
