@@ -47,4 +47,40 @@ export const queries = {
             }
         }
     `,
+
+    getAllUsersByGroupId : gql`
+        query getAllUsersByGroupId($id : ID!) {
+            getAllUsersByGroupId(id : $id){
+                id
+            }
+        }
+    `,
+
+    getAllRoles : gql`
+        query {
+            getAllRoles {
+                id
+                roleName
+            }
+    }`,
+
+    // Group Queries
+    /* todo: add group commander to the query */
+    getAllGroups : gql`
+        query {
+            getAllGroups {
+                id
+                name
+            }
+        }
+    `,
+
+    getGroup : gql`
+        query getGroup($id: ID!) {
+            groups(id: $id) {
+                id
+                name
+            }
+        }
+    `,
 };
