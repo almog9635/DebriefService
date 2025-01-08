@@ -3,8 +3,8 @@ import { Login } from "./login.ts";
 import { corsHeaders } from "./consts/consts.ts";
 import { authGuard } from "./middleware/auth.ts";
 import { CrudUser } from "./crud/user/crud.ts";
-import { RolesView } from "./views/view-roles.ts";
 import { CrudGroup } from "./crud/group/crud.ts";
+import { CrudRole } from "./crud/role/crud.ts";
 
 export class MainHandler {
 
@@ -68,7 +68,7 @@ export class MainHandler {
         if (url.pathname === "/roles" && req.method === "GET") {
             logger.info("Fetching all roles");
 
-            return await RolesView.handleGetRoles(req);
+            return await CrudRole.handleGetAll(req);
         }
 
         if (url.pathname === "/groups" && req.method === "GET") {

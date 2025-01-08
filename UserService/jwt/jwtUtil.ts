@@ -1,4 +1,4 @@
-import * as jose from 'https://deno.land/x/jose@v5.9.6/index.ts';
+import * as jose from 'npm:jose';
 import { User } from '../entity/user.ts';
 import {
   ACCESS_SECRET_KEY,
@@ -70,6 +70,7 @@ export class JwtUtil {
       const user: User = {
         id: (payload.sub),
         roles: payload.roles as Role[],
+        password: "**********",
         name: payload.name as string,
       };
 

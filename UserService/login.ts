@@ -18,9 +18,9 @@ export class Login {
         }
 
         const { userId, password } = await req.json();
-        const data = await GraphQLFetcher.fetchGraphQL(queries.loginQuery, { id: userId });
+        const data = await GraphQLFetcher.fetchGraphQL<User>(queries.loginQuery, { id: userId });
         logger.info(`Fetched user ${userId} details:`, data);
-        const isValid = data.users.password === `${password}`;
+        const isValid = data.password === `${password}`;
         logger.info(`User ${userId} login attempt: ${isValid ? "success" : "failed"}`);
         const response = new Response(JSON.stringify({ success: isValid }), {
             status: isValid ? 200 : 404,
@@ -31,7 +31,7 @@ export class Login {
         });
         
         if(!isValid) return response;
-        const user : User = {id: userId, name: data.users.firstName, roles: Array.isArray(data.users.roles) ? data.users.roles : []};
+        const user : User = {id: userId, name: data.name, password: "", roles: Array.isArray(data.roles) ? data.roles : []};
         const tokens = await JwtUtil.generateTokens(user);
         logger.info(`User ${userId} login attempt succeeded`);
         logger.info(tokens);

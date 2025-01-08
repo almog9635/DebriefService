@@ -1,4 +1,4 @@
-import { gql } from "https://deno.land/x/graphql_request@v4.1.0/mod.ts";
+import { gql } from "npm:graphql-request";
 
 const userFragment = gql`
         fragment user on User {
@@ -7,6 +7,7 @@ const userFragment = gql`
             lastName
             password
             serviceType
+            rank
         }`;
 
 export const queries = {
@@ -65,14 +66,17 @@ export const queries = {
     }`,
 
     // Group Queries
-    /* todo: add group commander to the query */
     getAllGroups : gql`
         query {
             getAllGroups {
                 id
                 name
+                commander{
+                    ...user
+                }
             }
         }
+        ${userFragment}
     `,
 
     getGroup : gql`
@@ -80,7 +84,14 @@ export const queries = {
             groups(id: $id) {
                 id
                 name
+                commander {
+                    ...user
+                }
+                users {
+                    ...user
+                }
             }
         }
+        ${userFragment}
     `,
 };

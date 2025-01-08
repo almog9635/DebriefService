@@ -1,4 +1,4 @@
-import * as jose from "https://deno.land/x/jose@v5.9.6/index.ts";
+import * as jose from "npm:jose";
 import { ACCESS_SECRET_KEY, REFRESH_SECRET_KEY } from "./properties.ts";
 
 export class BlacklistService{

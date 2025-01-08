@@ -13,6 +13,7 @@ export class CrudUser extends CRUD<UserInput> {
             firstName: rawInput.firstName,
             lastName: rawInput.lastName,
             password: rawInput.password,
+            rank: rawInput.rank,
             serviceType: rawInput.serviceType,
             group: {
                 name: rawInput.group.name
@@ -48,6 +49,7 @@ export class CrudUser extends CRUD<UserInput> {
             firstName: rawInput.firstName,
             lastName: rawInput.lastName,
             password: rawInput.password,
+            rank: rawInput.rank,
             serviceType: rawInput.serviceType,
             group: {
                 name: rawInput.group.name
